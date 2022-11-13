@@ -3,6 +3,7 @@ package com.experimental.product.community.membershipservice.entity
 import com.experimental.product.community.membershipservice.client.request.CreateMemberRequest
 import com.experimental.product.community.membershipservice.client.request.FamilyDetail
 import com.experimental.product.community.membershipservice.client.request.PaymentOption
+import com.experimental.product.community.membershipservice.client.request.PreferenceDetail
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.data.mongodb.core.mapping.Field
@@ -28,7 +29,9 @@ data class Member(
     @Field("payment_options")
     val paymentOptions: List<TypeValueInfo> = emptyList(),
     val preferences: List<TypeValueInfo> = emptyList(),
-    val family: List<FamilyInfo> = emptyList()
+    val family: List<FamilyInfo> = emptyList(),
+    @Field("audit_data")
+    var auditData: AuditData? = null
 ) {
     companion object {
         fun toMember(
@@ -48,7 +51,7 @@ data class Member(
 
     fun updatePaymentOptions(
         paymentOptions: List<PaymentOption>
-    ):Member {
+    ): Member {
         val typeValueInfoList = paymentOptions.map {
             TypeValueInfo(
                 type = it.type.name,
@@ -61,7 +64,7 @@ data class Member(
 
     fun updateFamily(
         family: List<FamilyDetail>
-    ):Member {
+    ): Member {
         val familyInfoList = family.map {
             FamilyInfo(
                 relationship = it.relationship.name,
@@ -70,5 +73,18 @@ data class Member(
         }.toMutableList()
 
         return this.copy(family = familyInfoList)
+    }
+
+    fun updatePreference(
+        preferences: List<PreferenceDetail>
+    ): Member {
+        val preferenceList = preferences.map {
+            TypeValueInfo(
+                type = it.type.name,
+                value = it.value
+            )
+        }.toMutableList()
+
+        return this.copy(preferences = preferenceList)
     }
 }

@@ -31,4 +31,11 @@ class MemberSearchController(
     ): ResponseEntity<Member> {
         return ResponseEntity.ok(memberSearchService.getByContactNumber(contactNumber))
     }
+
+    @GetMapping("/email/{emailAddress}")
+    fun getByEmailAddress(
+        @PathVariable emailAddress: String
+    ): ResponseEntity<Member> {
+        return ResponseEntity.ok(memberSearchService.getByEmailAddress(emailAddress))
+    }
 }

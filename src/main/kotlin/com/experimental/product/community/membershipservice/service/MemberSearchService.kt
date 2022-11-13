@@ -35,4 +35,14 @@ class MemberSearchService(
             null
         }
     }
+
+    fun getByEmailAddress(
+        emailAddress: String
+    ): Member? {
+        return try {
+            memberRepository.findOneByEmailAddress(emailAddress)
+        } catch (e: Exception) {
+            null
+        }
+    }
 }

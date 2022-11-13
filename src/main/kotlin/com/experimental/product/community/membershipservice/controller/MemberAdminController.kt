@@ -32,4 +32,37 @@ class MemberAdminController(
         else
             ResponseEntity.ok("not updated")
     }
+
+    @DeleteMapping("/{id}")
+    fun unsubscribe(
+        @PathVariable id: String
+    ): ResponseEntity<String> {
+        // TODO add validation of existence
+        return if (memberAdminService.delete(id))
+            ResponseEntity.ok("deleted")
+        else
+            ResponseEntity.ok("not deleted")
+    }
+
+    @PutMapping("/inactive/{id}")
+    fun inactive(
+        @PathVariable id: String
+    ): ResponseEntity<String> {
+        // TODO add validation of existence
+        return if (memberAdminService.inactive(id))
+            ResponseEntity.ok("inactivated")
+        else
+            ResponseEntity.ok("not inactivated")
+    }
+
+    @PutMapping("/active/{id}")
+    fun active(
+        @PathVariable id: String
+    ): ResponseEntity<String> {
+        // TODO add validation of existence
+        return if (memberAdminService.active(id))
+            ResponseEntity.ok("activated")
+        else
+            ResponseEntity.ok("not activated")
+    }
 }

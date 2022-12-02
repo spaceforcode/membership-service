@@ -4,7 +4,6 @@ import com.experimental.product.community.membershipservice.entity.Member
 import com.experimental.product.community.membershipservice.repository.MemberRepository
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
-import org.springframework.data.repository.config.RepositoryConfigurationDelegate
 import org.springframework.stereotype.Service
 
 @Service
@@ -12,7 +11,7 @@ class MemberSearchService(
     val memberRepository: MemberRepository
 ) {
     val logger: Log = LogFactory.getLog(
-        RepositoryConfigurationDelegate::class.java
+        MemberSearchService::class.java
     )
 
     fun getAll(): List<Member> {

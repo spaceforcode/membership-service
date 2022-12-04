@@ -1,4 +1,4 @@
-package com.experimental.product.community.membershipservice.client.request
+package com.experimental.product.community.membershipservice.client
 
 data class FamilyDetail(
     var relationship: FamilyRelationship,

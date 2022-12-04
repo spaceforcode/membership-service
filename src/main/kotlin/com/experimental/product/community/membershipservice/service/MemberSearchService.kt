@@ -1,6 +1,6 @@
 package com.experimental.product.community.membershipservice.service
 
-import com.experimental.product.community.membershipservice.entity.Member
+import com.experimental.product.community.membershipservice.client.response.MemberResponse
 import com.experimental.product.community.membershipservice.repository.MemberRepository
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
@@ -14,9 +14,10 @@ class MemberSearchService(
         MemberSearchService::class.java
     )
 
-    fun getAll(): List<Member> {
+    fun getAll(): List<MemberResponse> {
         return try {
-            memberRepository.findAll()
+            val dbMembers = memberRepository.findAll()
+            dbMembers.map { it.toMemberResponse() }.toMutableList()
         } catch (e: Exception) {
             logger.error(e.message)
             emptyList()
@@ -25,9 +26,10 @@ class MemberSearchService(
 
     fun get(
         id: String
-    ): Member? {
+    ): MemberResponse? {
         return try {
-            memberRepository.findOneById(id)
+            val dbMember = memberRepository.findOneById(id)
+            dbMember.toMemberResponse()
         } catch (e: Exception) {
             null
         }
@@ -35,9 +37,10 @@ class MemberSearchService(
 
     fun getByContactNumber(
         contactNumber: String
-    ): Member? {
+    ): MemberResponse? {
         return try {
-            memberRepository.findOneByContactNumber(contactNumber)
+            val dbMember = memberRepository.findOneByContactNumber(contactNumber)
+            dbMember.toMemberResponse()
         } catch (e: Exception) {
             null
         }
@@ -45,9 +48,10 @@ class MemberSearchService(
 
     fun getByEmailAddress(
         emailAddress: String
-    ): Member? {
+    ): MemberResponse? {
         return try {
-            memberRepository.findOneByEmailAddress(emailAddress)
+            val dbMember = memberRepository.findOneByEmailAddress(emailAddress)
+            dbMember.toMemberResponse()
         } catch (e: Exception) {
             null
         }

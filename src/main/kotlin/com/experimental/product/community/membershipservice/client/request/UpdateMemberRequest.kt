@@ -1,5 +1,8 @@
 package com.experimental.product.community.membershipservice.client.request
 
+import com.experimental.product.community.membershipservice.client.FamilyDetail
+import com.experimental.product.community.membershipservice.client.PaymentOption
+import com.experimental.product.community.membershipservice.client.PreferenceDetail
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 

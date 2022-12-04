@@ -1,9 +1,9 @@
 package com.experimental.product.community.membershipservice.entity
 
+import com.experimental.product.community.membershipservice.client.*
 import com.experimental.product.community.membershipservice.client.request.CreateMemberRequest
-import com.experimental.product.community.membershipservice.client.request.FamilyDetail
-import com.experimental.product.community.membershipservice.client.request.PaymentOption
-import com.experimental.product.community.membershipservice.client.request.PreferenceDetail
+import com.experimental.product.community.membershipservice.client.response.MemberResponse
+import com.experimental.product.community.membershipservice.util.ServiceUtil.dateFormatter
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.data.mongodb.core.mapping.Field
@@ -86,5 +86,37 @@ data class Member(
         }.toMutableList()
 
         return this.copy(preferences = preferenceList)
+    }
+
+    fun toMemberResponse(): MemberResponse {
+        return MemberResponse(
+            memberId = id!!,
+            firstName = firstName,
+            lastName = lastName,
+            contactNumber = contactNumber,
+            emailAddress = emailAddress,
+            unit = unit,
+            married = married,
+            active = active,
+            joiningDate = joiningDate.format(dateFormatter()),
+            paymentOptions = paymentOptions.map {
+                PaymentOption(
+                    type = PaymentType.valueOf(it.type),
+                    value = it.value
+                )
+            }.toMutableList(),
+            family = family.map {
+                FamilyDetail(
+                    relationship = FamilyRelationship.valueOf(it.relationship),
+                    name = it.name
+                )
+            }.toMutableList(),
+            preferences = preferences.map {
+                PreferenceDetail(
+                    type = PreferenceType.valueOf(it.type),
+                    value = it.value
+                )
+            }.toMutableList()
+        )
     }
 }

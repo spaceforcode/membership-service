@@ -1,48 +1,75 @@
 use communitydb
 
-db.members.createIndex( { "contact_number": 1 }, { unique: true } )
+db.members.createIndex( { "name": 1 }, { unique: true } )
 db.members.insertOne([
     {
-        contact_number: "4086454854",
-        first_name: "Ayan",
-        last_name: "Chakraborty",
-        email_address: "ayanit84@gmail.com",
-        unit: "710",
-        married: true,
-        active: true,
-        paymentOptions: [
+        name: "community name",
+        description: "community desc",
+        address: "community address',
+        contact_info: {
+            number: "(408) 645-4851",
+            email: "community@example.com"
+        }
+        amenities: [
             {
-                type: "Zelle",
-                value: "4086454851"
+                name: "amen 1",
+                description: "desc",
+                featured_photos: [
+                    "link1",
+                    "link2"
+                ]
             },
             {
-                type: "Splitwise",
-                value: "ayanit84@gmail.com"
+                name: "amen 2",
+                description: "desc",
+                featured_photos: [
+                    "link1",
+                    "link2"
+                ]
             }
         ],
-        preferences: [
+        emergency_contacts: [
+            "contact 1",
+            "contact 2"
+        ],
+        gated: true,
+        has_pool: false,
+        has_gym: true,
+        active: true
+    },
+    {
+        name: "community1 name",
+        description: "community1 desc",
+        address: "community1 address',
+        contact_info: {
+            number: "(408) 645-4851",
+            email: "community1@example.com"
+        }
+        amenities: [
             {
-                type: "Sports",
-                value: "Cricket"
+                name: "amen 1",
+                description: "desc",
+                featured_photos: [
+                    "link1",
+                    "link2"
+                ]
             },
             {
-                type: "Sports",
-                value: "Volley"
-            },
-            {
-                type: "Food",
-                value: "Veg"
+                name: "amen 2",
+                description: "desc",
+                featured_photos: [
+                    "link1",
+                    "link2"
+                ]
             }
         ],
-        family: [
-            {
-                relationship: "Spouse",
-                name: "Esa"
-            },
-            {
-                relationship: "Son",
-                name: "Aahan"
-            }
-        ]
+        emergency_contacts: [
+            "contact 1",
+            "contact 2"
+        ],
+        gated: true,
+        has_pool: false,
+        has_gym: true,
+        active: true
     }
 ])

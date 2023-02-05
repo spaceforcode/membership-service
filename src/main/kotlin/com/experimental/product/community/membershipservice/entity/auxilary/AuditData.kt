@@ -1,4 +1,4 @@
-package com.experimental.product.community.membershipservice.entity
+package com.experimental.product.community.membershipservice.entity.auxilary
 
 import org.springframework.data.mongodb.core.mapping.Field
 import java.time.LocalDateTime

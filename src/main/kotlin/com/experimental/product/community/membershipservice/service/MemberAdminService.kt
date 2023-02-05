@@ -2,8 +2,8 @@ package com.experimental.product.community.membershipservice.service
 
 import com.experimental.product.community.membershipservice.client.request.CreateMemberRequest
 import com.experimental.product.community.membershipservice.client.request.UpdateMemberRequest
-import com.experimental.product.community.membershipservice.entity.AuditData
 import com.experimental.product.community.membershipservice.entity.Member
+import com.experimental.product.community.membershipservice.entity.auxilary.AuditData
 import com.experimental.product.community.membershipservice.repository.MemberRepository
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime

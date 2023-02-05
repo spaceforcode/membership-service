@@ -9,7 +9,7 @@ data class CreateMemberRequest(
     var contactNumber: String,
     var firstName: String,
     var lastName: String,
-    var emailAddress: String,
-    var unit: String,
+    var emailAddress: String?,
+    var unit: String?,
     var married: Boolean = true
 )

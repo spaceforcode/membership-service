@@ -3,6 +3,9 @@ package com.experimental.product.community.membershipservice.entity
 import com.experimental.product.community.membershipservice.client.*
 import com.experimental.product.community.membershipservice.client.request.CreateMemberRequest
 import com.experimental.product.community.membershipservice.client.response.MemberResponse
+import com.experimental.product.community.membershipservice.entity.auxilary.AuditData
+import com.experimental.product.community.membershipservice.entity.auxilary.FamilyInfo
+import com.experimental.product.community.membershipservice.entity.auxilary.TypeValueInfo
 import com.experimental.product.community.membershipservice.util.ServiceUtil.dateFormatter
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
@@ -41,8 +44,8 @@ data class Member(
                 contactNumber = createMemberRequest.contactNumber,
                 firstName = createMemberRequest.firstName,
                 lastName = createMemberRequest.lastName,
-                emailAddress = createMemberRequest.emailAddress,
-                unit = createMemberRequest.unit,
+                emailAddress = createMemberRequest.emailAddress!!,
+                unit = createMemberRequest.unit!!,
                 married = createMemberRequest.married,
                 active = true
             )

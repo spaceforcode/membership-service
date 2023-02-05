@@ -4,6 +4,7 @@ db.events.insertMany([
     {
         name: "Diwali",
         description: "Diwali desc",
+        community_id:
         date: ISODate("2022-11-12"),
         venue: "Terrazzo Courtyard",
         venue_link: "<Map link>",

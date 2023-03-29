@@ -22,6 +22,12 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("io.springfox:springfox-boot-starter:3.0.0")
+
+    // graphql dependencies
+    implementation("com.graphql-java:graphql-spring-boot-starter:5.0.2")
+    implementation("com.graphql-java:graphql-java-tools:5.2.4")
+    implementation("com.graphql-java:graphiql-spring-boot-starter:5.0.2")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 

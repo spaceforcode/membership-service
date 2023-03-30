@@ -1,0 +1,17 @@
+schema {
+    query: Query
+}
+
+type Query {
+    members: [Member]
+    member(id: String): Member
+}
+
+type Member {
+    id: String
+    firstName: String
+    lastName: String
+    contactNumber: String
+    emailAddress: String
+    joinedAt: String
+}

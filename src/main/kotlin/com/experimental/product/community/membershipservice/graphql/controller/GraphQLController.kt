@@ -26,6 +26,10 @@ class GraphQLController {
         @RequestBody query: String
     ): ResponseEntity<Any> {
         val result = graphQL.execute(query)
-        return ResponseEntity.ok(result.getData())
+        return if (result.errors.isEmpty()) {
+            ResponseEntity.ok(result.getData())
+        } else {
+            ResponseEntity.internalServerError().body(result.errors)
+        }
     }
 }

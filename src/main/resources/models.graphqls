@@ -5,13 +5,33 @@ schema {
 type Query {
     members: [Member]
     member(id: String): Member
+    payment(type: String): Payment
 }
 
 type Member {
-    id: String
-    firstName: String
-    lastName: String
-    contactNumber: String
+    id: String!
+    firstName: String!
+    lastName: String!
+    contactNumber: String!
     emailAddress: String
     joinedAt: String
+    married: Boolean
+    paymentOptions: [Payment]
+    preferences: [Preference]
+    familyDetails: [Family]
+}
+
+type Payment {
+    type: String
+    value: String
+}
+
+type Preference {
+    type: String
+    value: String
+}
+
+type Family {
+    relationship: String
+    name: String
 }

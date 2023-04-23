@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MemberRepositoryV2 extends MongoRepository<Member,Integer> {
 
-    Member findOneById(String id);
+    Member findById(String id);
     Member findOneByContactNumber(String contactNumber);
     Member findOneByEmailAddress(String emailAddress);
 

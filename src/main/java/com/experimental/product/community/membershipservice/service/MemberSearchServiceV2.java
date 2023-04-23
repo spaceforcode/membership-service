@@ -6,6 +6,7 @@ import com.experimental.product.community.membershipservice.repository.MemberRep
 import com.experimental.product.community.membershipservice.repository.MemberRepositoryV2;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -15,12 +16,11 @@ import java.util.stream.Collectors;
 @Service
 public class MemberSearchServiceV2 {
 
-    private final MemberRepositoryV2 memberRepository;
+
+    @Autowired
+    private  MemberRepositoryV2 memberRepository;
     private final Log logger = LogFactory.getLog(MemberSearchService.class);
 
-    public MemberSearchServiceV2(MemberRepositoryV2 memberRepository) {
-        this.memberRepository = memberRepository;
-    }
 
     public List<MemberResponse> getAll() {
         try {
@@ -36,7 +36,7 @@ public class MemberSearchServiceV2 {
 
     public MemberResponse get(String id) {
         try {
-            Member dbMember = memberRepository.findOneById(id);
+            Member dbMember = memberRepository.findById(id);
             return dbMember.toMemberResponse();
         } catch (Exception e) {
             return null;

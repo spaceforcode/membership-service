@@ -57,22 +57,22 @@ class MemberSearchServiceV2Test {
         assertEquals(member1.getId(), memberResponses.get(0).getMemberId());
         assertEquals(member2.getId(), memberResponses.get(1).getMemberId());
     }
-// not working need fix
-//    @Test
-//    void testGet() {
-//        // given
-//        LocalDateTime now = LocalDateTime.now(); // current date and time
-//
-//        List<TypeValueInfo> typeValues = new ArrayList<>();
-//        List<FamilyInfo> families = new ArrayList<>();
-//        AuditData auditData = new AuditData("admin", now, "admin", now, "admin2", now);
-//        Member member = new Member("1", "1234567890", "John", "Doe", "johndoe@example.com", "A101", now, true, true, typeValues, typeValues, families, auditData);
-//
-//        // when
-//        MemberResponse memberResponse = memberSearchService.get("1");
-//
-//        assertEquals(member.getId(), memberResponse.getMemberId());
-//    }
+    @Test
+    void testGet() {
+        // given
+        LocalDateTime now = LocalDateTime.now(); // current date and time
+
+        List<TypeValueInfo> typeValues = new ArrayList<>();
+        List<FamilyInfo> families = new ArrayList<>();
+        AuditData auditData = new AuditData("admin", now, "admin", now, "admin2", now);
+        Member member = new Member("1", "1234567890", "John", "Doe", "johndoe@example.com", "A101", now, true, true, typeValues, typeValues, families, auditData);
+        Mockito.when(memberRepository.findById("1")).thenReturn(member);
+        // when
+        MemberResponse memberResponse=memberSearchService.get("1");
+        //then
+        assertEquals(member.getId(), memberResponse.getMemberId());
+
+    }
 
     @Test
     void testGetByContactNumber() {

@@ -2,7 +2,7 @@ package com.experimental.product.community.membershipservice.controller;
 
 import com.experimental.product.community.membershipservice.client.request.CreateMemberRequest;
 import com.experimental.product.community.membershipservice.client.request.UpdateMemberRequest;
-import com.experimental.product.community.membershipservice.service.MemberAdminService;
+import com.experimental.product.community.membershipservice.sevice.MemberAdminServiceV2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 public class MemberAdminControllerV2 {
 
     @Autowired
-    MemberAdminService memberAdminService;
+    MemberAdminServiceV2 memberAdminService;
 
     @PostMapping
     public ResponseEntity<String> join(
@@ -50,7 +50,7 @@ public class MemberAdminControllerV2 {
     @PutMapping("/active/{id}")
     public ResponseEntity<String> active(@PathVariable String id) {
         // TODO add validation of existence
-        return memberAdminService.active(id)
+        return memberAdminService.inactive(id)
                 ? ResponseEntity.ok("activated")
                 : ResponseEntity.ok("not activated");
     }

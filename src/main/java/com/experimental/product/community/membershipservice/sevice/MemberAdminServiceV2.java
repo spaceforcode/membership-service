@@ -49,13 +49,13 @@ public class MemberAdminServiceV2 {
                     existingMember.getFamily(),
                     existingMember.getAuditData()));
             if (updateMemberRequest.getPaymentOptions() != null && !updateMemberRequest.getPaymentOptions().isEmpty()) {
-                updatedMember = updatedMember.updatePaymentOptions(updateMemberRequest.getPaymentOptions());
+                updatedMember.updatePaymentOptions(updateMemberRequest.getPaymentOptions());
             }
             if (updateMemberRequest.getFamilyDetails() != null && !updateMemberRequest.getFamilyDetails().isEmpty()) {
-                updatedMember = updatedMember.updateFamily(updateMemberRequest.getFamilyDetails());
+                updatedMember.updateFamily(updateMemberRequest.getFamilyDetails());
             }
             if (updateMemberRequest.getPreferenceDetails() != null && !updateMemberRequest.getPreferenceDetails().isEmpty()) {
-                updatedMember = updatedMember.updatePreference(updateMemberRequest.getPreferenceDetails());
+                 updatedMember.updatePreference(updateMemberRequest.getPreferenceDetails());
             }
 
             // audit data

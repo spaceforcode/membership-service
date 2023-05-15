@@ -16,4 +16,7 @@ open class AuditData(
     var inactivatedBy: String? = null,
     @Field("inactivated_date")
     var inactivatedDate: LocalDateTime? = null
-)
+) {
+    constructor(createdBy: String, createdDate: LocalDateTime):this()
+    {}
+ }

@@ -71,6 +71,15 @@ public class MemberAdminServiceV2 {
             return false;
         }
     }
+    public boolean delete(String id) {
+        try {
+            // hard delete
+            memberRepository.deleteById(Integer.valueOf(id));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
     public boolean inactive(String id) {
         try {
             LocalDateTime now = LocalDateTime.now();

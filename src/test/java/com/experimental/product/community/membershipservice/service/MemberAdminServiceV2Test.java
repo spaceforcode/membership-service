@@ -8,7 +8,7 @@ import com.experimental.product.community.membershipservice.entity.auxilary.Audi
 import com.experimental.product.community.membershipservice.entity.auxilary.FamilyInfo;
 import com.experimental.product.community.membershipservice.entity.auxilary.TypeValueInfo;
 import com.experimental.product.community.membershipservice.repository.MemberRepositoryV2;
-import com.experimental.product.community.membershipservice.sevice.MemberAdminServiceV2;
+import com.experimental.product.community.membershipservice.service.MemberAdminServiceV2;
 import graphql.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

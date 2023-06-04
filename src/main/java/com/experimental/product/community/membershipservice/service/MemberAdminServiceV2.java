@@ -1,5 +1,4 @@
-package com.experimental.product.community.membershipservice.sevice;
-
+package com.experimental.product.community.membershipservice.service;
 import com.experimental.product.community.membershipservice.client.request.CreateMemberRequest;
 import com.experimental.product.community.membershipservice.client.request.UpdateMemberRequest;
 import com.experimental.product.community.membershipservice.entity.Member;
@@ -35,32 +34,36 @@ public class MemberAdminServiceV2 {
     public boolean update(UpdateMemberRequest updateMemberRequest) {
         try {
             Member existingMember = memberRepository.findById(updateMemberRequest.getId());
-            Member updatedMember =(new Member(existingMember.getId(),
+            Member updatedMember = existingMember.copy(
+                    existingMember.getId(),
                     existingMember.getContactNumber(),
                     existingMember.getFirstName(),
                     existingMember.getLastName(),
                     existingMember.getEmailAddress(),
-                    existingMember.getUnit(),
+                    updateMemberRequest.getUnit(),
                     existingMember.getJoiningDate(),
-                    existingMember.getMarried(),
+                    updateMemberRequest.getMarried(),
                     existingMember.getActive(),
                     existingMember.getPaymentOptions(),
                     existingMember.getPreferences(),
                     existingMember.getFamily(),
-                    existingMember.getAuditData()));
+                    existingMember.getAuditData()
+            );
             if (updateMemberRequest.getPaymentOptions() != null && !updateMemberRequest.getPaymentOptions().isEmpty()) {
-                updatedMember.updatePaymentOptions(updateMemberRequest.getPaymentOptions());
+                updatedMember = updatedMember.updatePaymentOptions(updateMemberRequest.getPaymentOptions());
             }
             if (updateMemberRequest.getFamilyDetails() != null && !updateMemberRequest.getFamilyDetails().isEmpty()) {
-                updatedMember.updateFamily(updateMemberRequest.getFamilyDetails());
+                updatedMember = updatedMember.updateFamily(updateMemberRequest.getFamilyDetails());
             }
             if (updateMemberRequest.getPreferenceDetails() != null && !updateMemberRequest.getPreferenceDetails().isEmpty()) {
-                 updatedMember.updatePreference(updateMemberRequest.getPreferenceDetails());
+                updatedMember = updatedMember.updatePreference(updateMemberRequest.getPreferenceDetails());
             }
 
             // audit data
-            updatedMember.getAuditData().setUpdatedBy("test");
-            updatedMember.getAuditData().setUpdatedDate(LocalDateTime.now());
+            if (updatedMember.getAuditData() != null) {
+                updatedMember.getAuditData().setUpdatedBy("test");
+                updatedMember.getAuditData().setUpdatedDate(LocalDateTime.now());
+            }
 
             memberRepository.save(updatedMember);
             return true;
@@ -68,15 +71,6 @@ public class MemberAdminServiceV2 {
             return false;
         }
     }
-public boolean delete(String id) {
-    try {
-        // hard delete
-        memberRepository.deleteById(Integer.valueOf(id));
-        return true;
-    } catch (Exception e) {
-        return false;
-    }
-}
     public boolean inactive(String id) {
         try {
             LocalDateTime now = LocalDateTime.now();

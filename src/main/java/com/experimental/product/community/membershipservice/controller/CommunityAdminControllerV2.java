@@ -22,16 +22,9 @@ public class CommunityAdminControllerV2 {
         boolean saved = communityAdminService.save(createCommunityRequest);
         if (saved) {
             return ResponseEntity.ok("Community saved successfully.");
-        }
-        else if(saved=false)
-        {
-          return ResponseEntity.ok("Community not inserted");
-        }
-        else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to save community.");
+        } else {
+            return ResponseEntity.ok("Community not inserted");
         }
     }
-
-
-
 }
+

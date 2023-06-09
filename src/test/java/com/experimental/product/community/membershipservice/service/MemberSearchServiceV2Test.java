@@ -1,4 +1,4 @@
-package com.experimental.product.community.membershipservice;
+package com.experimental.product.community.membershipservice.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,7 +10,7 @@ import java.util.List;
 import com.experimental.product.community.membershipservice.entity.auxilary.AuditData;
 import com.experimental.product.community.membershipservice.entity.auxilary.FamilyInfo;
 import com.experimental.product.community.membershipservice.entity.auxilary.TypeValueInfo;
-import com.experimental.product.community.membershipservice.service.MemberSearchServiceV2;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

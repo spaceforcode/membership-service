@@ -2,7 +2,7 @@ package com.experimental.product.community.membershipservice.service;
 
 import com.experimental.product.community.membershipservice.client.response.CommunityResponse;
 import com.experimental.product.community.membershipservice.entity.Community;
-import com.experimental.product.community.membershipservice.repository.CommunityRepository;
+import com.experimental.product.community.membershipservice.repository.CommunityRepositoryV2;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 public class CommunitySearchServiceV2 {
 
     @Autowired
-    private CommunityRepository communityRepository;
+    private CommunityRepositoryV2 communityRepository;
 
     private final Log logger = LogFactory.getLog(CommunitySearchServiceV2.class);
 
@@ -41,4 +41,14 @@ public class CommunitySearchServiceV2 {
             return null;
         }
     }
+
+    public Stream<Community> getByName(String name) {
+        try {
+            Optional<Community> dbMember = Optional.ofNullable(communityRepository.findOneByName(name));
+            return dbMember.stream();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 }

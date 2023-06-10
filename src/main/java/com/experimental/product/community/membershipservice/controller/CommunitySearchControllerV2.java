@@ -32,5 +32,15 @@ public class CommunitySearchControllerV2 {
     {
         return ResponseEntity.ok(communitySearchService.getById(id));
     }
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<Stream<Community>> getByNmae(@PathVariable String name)
+    {
+        return ResponseEntity.ok(communitySearchService.getByName(name));
+    }
+    
+
+
+
 }
 

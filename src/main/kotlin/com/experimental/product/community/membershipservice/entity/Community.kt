@@ -2,6 +2,7 @@ package com.experimental.product.community.membershipservice.entity
 
 import com.experimental.product.community.membershipservice.client.ContactType
 import com.experimental.product.community.membershipservice.client.request.CreateCommunityRequest
+import com.experimental.product.community.membershipservice.client.response.CommunityResponse
 import com.experimental.product.community.membershipservice.entity.auxilary.AmenityInfo
 import com.experimental.product.community.membershipservice.entity.auxilary.ContactInfo
 import com.experimental.product.community.membershipservice.entity.auxilary.SocialType
@@ -60,4 +61,26 @@ data class Community(
             )
         }
     }
+
+    fun toCommunityResponse(): CommunityResponse {
+        return CommunityResponse(
+            communityId = id!!,
+            name = name,
+            description = description,
+            address = address,
+            contactInfo = contactInfo,
+            amenities = amenities,
+            emergencyContacts = emergencyContacts,
+            isGated = isGated,
+            hasPool = hasPool,
+            hasGym = hasGym,
+            isActive = isActive
+        )
+    }
+
+
+
+
+
+
 }

@@ -39,7 +39,7 @@ public class MemberAdminServiceV2 {
                     existingMember.getContactNumber(),
                     existingMember.getFirstName(),
                     existingMember.getLastName(),
-                    existingMember.getEmailAddress(),
+                    updateMemberRequest.getEmailAddress(),
                     updateMemberRequest.getUnit(),
                     existingMember.getJoiningDate(),
                     updateMemberRequest.getMarried(),

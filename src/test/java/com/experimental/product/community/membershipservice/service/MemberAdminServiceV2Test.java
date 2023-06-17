@@ -1,6 +1,5 @@
 package com.experimental.product.community.membershipservice.service;
 
-import com.experimental.product.community.membershipservice.client.*;
 import com.experimental.product.community.membershipservice.client.request.CreateMemberRequest;
 import com.experimental.product.community.membershipservice.client.request.UpdateMemberRequest;
 import com.experimental.product.community.membershipservice.entity.Member;
@@ -8,7 +7,6 @@ import com.experimental.product.community.membershipservice.entity.auxilary.Audi
 import com.experimental.product.community.membershipservice.entity.auxilary.FamilyInfo;
 import com.experimental.product.community.membershipservice.entity.auxilary.TypeValueInfo;
 import com.experimental.product.community.membershipservice.repository.MemberRepositoryV2;
-import com.experimental.product.community.membershipservice.service.MemberAdminServiceV2;
 import graphql.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,19 +14,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.stubbing.OngoingStubbing;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.google.common.base.Verify.verify;
-import static graphql.Assert.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static graphql.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
-import static org.springframework.data.mongodb.core.aggregation.ConditionalOperators.Cond.when;
 
 public class MemberAdminServiceV2Test {
     @Mock
@@ -89,7 +82,7 @@ public class MemberAdminServiceV2Test {
         // create an update member request object
         UpdateMemberRequest updateMemberRequest = new UpdateMemberRequest(
                 "1",
-                "1234567890",
+                "johndoe@example.com",
                 "A101",
                 true,
                 null,

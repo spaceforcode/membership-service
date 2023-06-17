@@ -26,6 +26,7 @@ import java.util.List;
 import static com.google.common.base.Verify.verify;
 import static graphql.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.springframework.data.mongodb.core.aggregation.ConditionalOperators.Cond.when;
 
@@ -88,9 +89,9 @@ public class MemberAdminServiceV2Test {
         // create an update member request object
         UpdateMemberRequest updateMemberRequest = new UpdateMemberRequest(
                 "1",
-                null,
-                null,
-                null,
+                "1234567890",
+                "A101",
+                true,
                 null,
                 null,
                 null
@@ -98,6 +99,7 @@ public class MemberAdminServiceV2Test {
 
         // mock the findById() method to return the existing member
         Mockito.when(memberRepository.findById("1")).thenReturn(existingMember);
+        Mockito.when(memberRepository.save(any())).thenReturn(existingMember);
 
         // call the update() method and verify the result
         boolean result = memberAdminService.update(updateMemberRequest);

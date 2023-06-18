@@ -34,7 +34,7 @@ class MemberAdminService(
         updateMemberRequest: UpdateMemberRequest
     ): Boolean {
         return try {
-            val existingMember = memberRepository.findOneById(updateMemberRequest.id)
+            val existingMember = memberRepository.findOneById(updateMemberRequest.memberId)
             var updatedMember = existingMember.copy()
             if (updateMemberRequest.paymentOptions?.isNotEmpty()!!)
                 updatedMember = updatedMember.updatePaymentOptions(updateMemberRequest.paymentOptions!!)

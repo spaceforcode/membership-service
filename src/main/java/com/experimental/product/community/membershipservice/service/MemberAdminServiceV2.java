@@ -33,13 +33,13 @@ public class MemberAdminServiceV2 {
 
     public boolean update(UpdateMemberRequest updateMemberRequest) {
         try {
-            Member existingMember = memberRepository.findById(updateMemberRequest.getId());
+            Member existingMember = memberRepository.findById(updateMemberRequest.getMemberId());
             Member updatedMember = existingMember.copy(
                     existingMember.getId(),
                     existingMember.getContactNumber(),
                     existingMember.getFirstName(),
                     existingMember.getLastName(),
-                    existingMember.getEmailAddress(),
+                    updateMemberRequest.getEmailAddress(),
                     updateMemberRequest.getUnit(),
                     existingMember.getJoiningDate(),
                     updateMemberRequest.getMarried(),

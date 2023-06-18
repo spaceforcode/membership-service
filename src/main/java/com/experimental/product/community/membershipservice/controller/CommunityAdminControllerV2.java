@@ -1,6 +1,7 @@
 package com.experimental.product.community.membershipservice.controller;
 
 import com.experimental.product.community.membershipservice.client.request.CreateCommunityRequest;
+import com.experimental.product.community.membershipservice.client.request.CreateCommunityRequestV2;
 import com.experimental.product.community.membershipservice.service.CommunityAdminServiceV2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class CommunityAdminControllerV2 {
 
 
     @PostMapping
-    public ResponseEntity<String> saveCommunity(@RequestBody CreateCommunityRequest createCommunityRequest) {
+    public ResponseEntity<String> saveCommunity(@RequestBody CreateCommunityRequestV2 createCommunityRequest) {
         // TODO add validation
         boolean saved = communityAdminService.save(createCommunityRequest);
         if (saved) {

@@ -7,10 +7,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MemberAddToCommunityRequest {
-    @JsonProperty("community_id")
+    @JsonProperty("communityId")
     private String community_id;
 
-    @JsonProperty("member_id")
+    @JsonProperty("memberId")
     private String member_id;
 
     public String getCommunity_id() {

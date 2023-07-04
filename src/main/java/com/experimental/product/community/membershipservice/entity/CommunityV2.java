@@ -47,7 +47,7 @@ public class CommunityV2{
     @Field("active")
     private Boolean isActive;
 
-    @Field("ListofMembers")
+    @Field("member_list")
     private List<MemberDetails> ListofMembers;
 
     public List<MemberDetails> getListofMembers() {

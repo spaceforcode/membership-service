@@ -4,17 +4,15 @@ import com.experimental.product.community.membershipservice.client.ContactType;
 import com.experimental.product.community.membershipservice.client.request.CreateCommunityRequestV2;
 import com.experimental.product.community.membershipservice.entity.auxilary.AmenityInfo;
 import com.experimental.product.community.membershipservice.entity.auxilary.ContactInfo;
+import com.experimental.product.community.membershipservice.entity.auxilary.MemberDetails;
 import com.experimental.product.community.membershipservice.entity.auxilary.SocialType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-@Document("community")
+@Document("communities")
 public class CommunityV2{
     @Id
     private String id;
@@ -49,6 +47,17 @@ public class CommunityV2{
     @Field("active")
     private Boolean isActive;
 
+    @Field("ListofMembers")
+    private List<MemberDetails> ListofMembers;
+
+    public List<MemberDetails> getListofMembers() {
+        return ListofMembers;
+    }
+
+    public void setListofMembers(List<MemberDetails> listofMembers) {
+        ListofMembers = listofMembers;
+    }
+
     public CommunityV2() {
     }
 
@@ -65,6 +74,38 @@ public class CommunityV2{
         this.hasGym = hasGym;
         this.isActive = isActive;
     }
+    public static CommunityV2 copy(
+            String id,
+            String name,
+            String description,
+            String address,
+            ContactInfo contactInfo,
+            List<AmenityInfo> amenities,
+            List<String> emergencyContacts,
+            Boolean isGated,
+            Boolean hasPool,
+            Boolean hasGym,
+            Boolean isActive,
+            List<MemberDetails> listOfMembers
+    ) {
+        CommunityV2 communityCopy = new CommunityV2();
+        communityCopy.setId(id);
+        communityCopy.setName(name);
+        communityCopy.setDescription(description);
+        communityCopy.setAddress(address);
+        communityCopy.setContactInfo(contactInfo);
+        communityCopy.setAmenities(amenities);
+        communityCopy.setEmergencyContacts(emergencyContacts);
+        communityCopy.setGated(isGated);
+        communityCopy.setHasPool(hasPool);
+        communityCopy.setHasGym(hasGym);
+        communityCopy.setActive(isActive);
+        communityCopy.setListofMembers(listOfMembers);
+
+        return communityCopy;
+    }
+
+
     public static CommunityV2 toCommunity(CreateCommunityRequestV2 createCommunityRequest) {
         Map<ContactType, String> contacts = createCommunityRequest.getContacts();
         Map<SocialType, String> socialContacts = new HashMap<>();

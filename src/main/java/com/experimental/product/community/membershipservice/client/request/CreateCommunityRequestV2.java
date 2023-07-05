@@ -99,4 +99,6 @@ public class CreateCommunityRequestV2 {
         this.hasGym = hasGym;
     }
 
+
+
 }

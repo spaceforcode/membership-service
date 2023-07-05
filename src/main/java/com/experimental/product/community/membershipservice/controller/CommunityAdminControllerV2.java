@@ -1,6 +1,8 @@
 package com.experimental.product.community.membershipservice.controller;
 
-import com.experimental.product.community.membershipservice.client.request.CreateCommunityRequest;
+
+import com.experimental.product.community.membershipservice.client.request.CreateCommunityRequestV2;
+import com.experimental.product.community.membershipservice.client.request.MemberAddToCommunityRequest;
 import com.experimental.product.community.membershipservice.service.CommunityAdminServiceV2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +19,7 @@ public class CommunityAdminControllerV2 {
 
 
     @PostMapping
-    public ResponseEntity<String> saveCommunity(@RequestBody CreateCommunityRequest createCommunityRequest) {
+    public ResponseEntity<String> saveCommunity(@RequestBody CreateCommunityRequestV2 createCommunityRequest) {
         // TODO add validation
         boolean saved = communityAdminService.save(createCommunityRequest);
         if (saved) {
@@ -26,5 +28,16 @@ public class CommunityAdminControllerV2 {
             return ResponseEntity.ok("Community not inserted");
         }
     }
+    @PostMapping("/addmember")
+    public ResponseEntity<String> addMember(@RequestBody MemberAddToCommunityRequest memberAddToCommunityRequest) {
+        // TODO add validation
+        boolean saved = communityAdminService.saveMemberID(memberAddToCommunityRequest);
+        if (saved) {
+            return ResponseEntity.ok("Member added to this community successfully.");
+        } else {
+            return ResponseEntity.ok("Member not added");
+        }
+    }
+
 }
 

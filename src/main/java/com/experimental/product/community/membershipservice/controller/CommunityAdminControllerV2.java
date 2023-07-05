@@ -1,6 +1,6 @@
 package com.experimental.product.community.membershipservice.controller;
 
-import com.experimental.product.community.membershipservice.client.request.CreateCommunityRequest;
+
 import com.experimental.product.community.membershipservice.client.request.CreateCommunityRequestV2;
 import com.experimental.product.community.membershipservice.client.request.MemberAddToCommunityRequest;
 import com.experimental.product.community.membershipservice.service.CommunityAdminServiceV2;
@@ -29,10 +29,10 @@ public class CommunityAdminControllerV2 {
         }
     }
     @PostMapping("/AddMember")
-    public ResponseEntity<String> MemberID(@RequestBody MemberAddToCommunityRequest memberAddToCommunityRequest) {
+    public ResponseEntity<String> AddMemberID(@RequestBody MemberAddToCommunityRequest memberAddToCommunityRequest) {
         // TODO add validation
         boolean saved = communityAdminService.saveMemberID(memberAddToCommunityRequest);
-        if (saved==true) {
+        if (saved) {
             return ResponseEntity.ok("Member added to this community successfully.");
         } else {
             return ResponseEntity.ok("Member not added");

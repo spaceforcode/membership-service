@@ -36,8 +36,8 @@ public class CommunityAdminServiceV2 {
 
     public boolean saveMemberID(@NotNull MemberAddToCommunityRequest memberAddToCommunityRequest) {
         try {
-            Optional<CommunityV2> existingCommunity = communityRepository.findById(memberAddToCommunityRequest.getCommunity_id());
-            Member existingMember = memberRepository.findById(memberAddToCommunityRequest.getMember_id());
+            Optional<CommunityV2> existingCommunity = communityRepository.findById(memberAddToCommunityRequest.getCommunityId());
+            Member existingMember = memberRepository.findById(memberAddToCommunityRequest.getMemberId());
 
             if (existingCommunity.isPresent() && existingMember != null) {
                 List<MemberDetails> updatedMembersList = existingCommunity.get().getListofMembers();
@@ -49,8 +49,8 @@ public class CommunityAdminServiceV2 {
                 MemberDetails memberDetails = new MemberDetails(
                         existingMember.getFirstName(),
                         existingMember.getLastName(),
-                        memberAddToCommunityRequest.getCommunity_id(),
-                        memberAddToCommunityRequest.getMember_id()
+                        memberAddToCommunityRequest.getCommunityId(),
+                        memberAddToCommunityRequest.getMemberId()
                 );
 
                 updatedMembersList.add(memberDetails);

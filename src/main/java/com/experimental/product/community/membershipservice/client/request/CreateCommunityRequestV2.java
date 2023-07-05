@@ -23,16 +23,16 @@ public class CreateCommunityRequestV2 {
     @JsonProperty("contacts")
     private Map<ContactType, String> contacts;
 
-    @JsonProperty("emergencyContacts")
+    @JsonProperty("emergency_contacts")
     private List<String> emergencyContacts;
 
-    @JsonProperty("isGated")
+    @JsonProperty("is_gated")
     private Boolean isGated;
 
-    @JsonProperty("hasPool")
+    @JsonProperty("has_pool")
     private Boolean hasPool;
 
-    @JsonProperty("hasGym")
+    @JsonProperty("has_gym")
     private Boolean hasGym;
 
     public String getName() {

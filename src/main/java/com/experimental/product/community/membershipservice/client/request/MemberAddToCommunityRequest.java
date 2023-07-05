@@ -7,25 +7,25 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MemberAddToCommunityRequest {
-    @JsonProperty("communityId")
-    private String community_id;
+    @JsonProperty("community_id")
+    private String communityId;
 
-    @JsonProperty("memberId")
-    private String member_id;
+    @JsonProperty("member_id")
+    private String memberId;
 
-    public String getCommunity_id() {
-        return community_id;
+    public String getCommunityId() {
+        return communityId;
     }
 
-    public void setCommunity_id(String community_id) {
-        this.community_id = community_id;
+    public void setCommunityId(String communityId) {
+        this.communityId = communityId;
     }
 
-    public String getMember_id() {
-        return member_id;
+    public String getMemberId() {
+        return memberId;
     }
 
-    public void setMember_id(String member_id) {
-        this.member_id = member_id;
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
     }
 }

@@ -2,6 +2,7 @@ package com.experimental.product.community.membershipservice.controller;
 
 
 import com.experimental.product.community.membershipservice.client.request.CreateCommunityRequestV2;
+import com.experimental.product.community.membershipservice.client.request.DeleteMemberFromCommunityRequest;
 import com.experimental.product.community.membershipservice.client.request.MemberAddToCommunityRequest;
 import com.experimental.product.community.membershipservice.service.CommunityAdminServiceV2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,15 @@ public class CommunityAdminControllerV2 {
             return ResponseEntity.ok("Member added to this community successfully.");
         } else {
             return ResponseEntity.ok("Member not added");
+        }
+    }
+    @PostMapping("/deletemember")
+    public ResponseEntity<String> deleteMemberFromCommunity(@RequestBody DeleteMemberFromCommunityRequest deleteMemberFromCommunity){
+        boolean deleteFlag=communityAdminService.deleteMemmber(deleteMemberFromCommunity);
+        if (deleteFlag) {
+            return ResponseEntity.ok("Member successfully removed from this community.");
+        } else {
+            return ResponseEntity.ok("Failed to remove");
         }
     }
 

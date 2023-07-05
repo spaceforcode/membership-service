@@ -1,6 +1,7 @@
 package com.experimental.product.community.membershipservice.client
 
-enum class FamilyRelationship {
+enum class FamilyRelationship
+{
     Spouse,
     Son,
     Daughter

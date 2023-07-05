@@ -4,6 +4,7 @@ import com.experimental.product.community.membershipservice.client.request.Creat
 import com.experimental.product.community.membershipservice.client.request.MemberAddToCommunityRequest;
 import com.experimental.product.community.membershipservice.entity.CommunityV2;
 import com.experimental.product.community.membershipservice.entity.Member;
+import com.experimental.product.community.membershipservice.entity.MemberV2;
 import com.experimental.product.community.membershipservice.entity.auxilary.MemberDetails;
 import com.experimental.product.community.membershipservice.repository.CommunityRepositoryV2;
 import com.experimental.product.community.membershipservice.repository.MemberRepositoryV2;
@@ -37,7 +38,7 @@ public class CommunityAdminServiceV2 {
     public boolean saveMemberID(@NotNull MemberAddToCommunityRequest memberAddToCommunityRequest) {
         try {
             Optional<CommunityV2> existingCommunity = communityRepository.findById(memberAddToCommunityRequest.getCommunityId());
-            Member existingMember = memberRepository.findById(memberAddToCommunityRequest.getMemberId());
+            MemberV2 existingMember = memberRepository.findById(memberAddToCommunityRequest.getMemberId()).get();
 
             if (existingCommunity.isPresent() && existingMember != null) {
                 List<MemberDetails> updatedMembersList = existingCommunity.get().getListofMembers();

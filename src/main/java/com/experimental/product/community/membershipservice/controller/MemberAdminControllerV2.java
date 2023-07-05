@@ -2,7 +2,9 @@ package com.experimental.product.community.membershipservice.controller;
 
 
 import com.experimental.product.community.membershipservice.client.request.CreateMemberRequest;
+import com.experimental.product.community.membershipservice.client.request.CreateMemberRequestV2;
 import com.experimental.product.community.membershipservice.client.request.UpdateMemberRequest;
+import com.experimental.product.community.membershipservice.client.request.UpdateMemberRequestV2;
 import com.experimental.product.community.membershipservice.service.MemberAdminServiceV2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

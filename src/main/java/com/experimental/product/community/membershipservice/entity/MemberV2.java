@@ -36,6 +36,7 @@ public class MemberV2
     private List<TypeValueInfo2> paymentOptions =new ArrayList<>();
     @Field("preferences")
     private List<TypeValueInfo2> preferences = new ArrayList<>();
+    @Field("family_information")
     private List<FamilyInfo2> family=new ArrayList<>();
     @Field("joining_date")
     private LocalDateTime joiningDate = LocalDateTime.now();
@@ -146,35 +147,35 @@ public class MemberV2
 
 
 
-        MemberResponseV2 MemberResponseObj= new MemberResponseV2();
+        MemberResponseV2 memberResponseObj= new MemberResponseV2();
 
 
-        MemberResponseObj.setId(this.id);
-        MemberResponseObj.setContactNumber(this.contactNumber);
-        MemberResponseObj.setFirstName(this.firstName);
-        MemberResponseObj.setLastName(this.lastName);
-        MemberResponseObj.setEmailAddress(this.emailAddress);
-        MemberResponseObj.setUnit(this.unit);
+        memberResponseObj.setId(this.id);
+        memberResponseObj.setContactNumber(this.contactNumber);
+        memberResponseObj.setFirstName(this.firstName);
+        memberResponseObj.setLastName(this.lastName);
+        memberResponseObj.setEmailAddress(this.emailAddress);
+        memberResponseObj.setUnit(this.unit);
 
 
-        MemberResponseObj.setPaymentOptions(payment);
-        MemberResponseObj.setPreferences(preference);
-        MemberResponseObj.setFamily(familyObj);
+        memberResponseObj.setPaymentOptions(payment);
+        memberResponseObj.setPreferences(preference);
+        memberResponseObj.setFamily(familyObj);
 
-        MemberResponseObj.setJoiningDate(formatDateTime);
-        return MemberResponseObj;
+        memberResponseObj.setJoiningDate(formatDateTime);
+        return memberResponseObj;
 
     }
     public CreateMemberRequestV2 toMemberV2(CreateMemberRequestV2 createMemberRequestV2)
     {
        // CreateMemberRequestV2 createMemberRequestObj = new CreateMemberRequestV2();
-        this.contactNumber= createMemberRequestV2.contactNumber;
-        this.firstName= createMemberRequestV2.firstname;
-        this.lastName=createMemberRequestV2.lastname;
-        this.emailAddress=createMemberRequestV2.emailAddress;
-        this.unit=createMemberRequestV2.unit;
+        this.contactNumber= createMemberRequestV2.getContactNumber();
+        this.firstName= createMemberRequestV2.getFirstname();
+        this.lastName=createMemberRequestV2.getLastname();
+        this.emailAddress=createMemberRequestV2.getEmailAddress();
+        this.unit=createMemberRequestV2.getUnit();
         this.active=true;
-        this.married=createMemberRequestV2.married;
+        this.married=createMemberRequestV2.getMarried();
 
         return createMemberRequestV2;
     }

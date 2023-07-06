@@ -29,6 +29,8 @@ public class MemberAddToCommunityRequest {
         this.memberId = memberId;
     }
 
-
-
+    public MemberAddToCommunityRequest(String communityId, String memberId) {
+        this.communityId = communityId;
+        this.memberId = memberId;
+    }
 }

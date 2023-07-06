@@ -50,7 +50,7 @@ public class MemberAdminControllerV2 {
     @PutMapping("/active/{id}")
     public ResponseEntity<String> active(@PathVariable String id) {
         // TODO add validation of existence
-        return memberAdminService.inactive(id)
+        return memberAdminService.active(id)
                 ? ResponseEntity.ok("activated")
                 : ResponseEntity.ok("not activated");
     }

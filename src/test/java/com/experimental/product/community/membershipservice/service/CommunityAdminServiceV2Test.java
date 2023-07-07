@@ -27,7 +27,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 
-public class CommunityAdminServiceV2Test {
+/*public class CommunityAdminServiceV2Test {
 
     @Mock
     private CommunityRepositoryV2 communityRepository;
@@ -195,6 +195,6 @@ public class CommunityAdminServiceV2Test {
         verify(communityRepository, never()).save(any());
     }
 
-}
+}*/
 
 

@@ -71,7 +71,7 @@ public class CommunityAdminServiceV2 {
     public boolean deleteMemmber(DeleteMemberFromCommunityRequest deleteMemberFromCommunityRequest) {
         try {
             Optional<CommunityV2> existingCommunity = communityRepository.findById(deleteMemberFromCommunityRequest.getCommunityId());
-            Member existingMember = memberRepository.findById(deleteMemberFromCommunityRequest.getMemberId());
+            MemberV2 existingMember = memberRepository.findById(deleteMemberFromCommunityRequest.getMemberId()).get();
 
             List<MemberDetails> updatedMembersList = null;
             if (existingCommunity.isPresent() && existingMember != null) {

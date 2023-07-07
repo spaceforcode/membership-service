@@ -12,6 +12,7 @@ import com.experimental.product.community.membershipservice.repository.MemberRep
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -191,28 +192,32 @@ public class MemberAdminServiceV2 {
         }
     }
 
-    public boolean active(String id) {
+   public boolean active(String id) {
         try {
             LocalDateTime now = LocalDateTime.now();
-            Member activeMember = memberRepository.findById(id);
+            MemberV2 activeMember = memberRepository.findById(id).get();
             // set active=false during copy
-            Member inactiveMember=(new Member(activeMember.getId(),
+            MemberV2 inactiveMember=(new MemberV2
+                    (
+                    activeMember.getId(),
                     activeMember.getContactNumber(),
                     activeMember.getFirstName(),
                     activeMember.getLastName(),
                     activeMember.getEmailAddress(),
                     activeMember.getUnit(),
-                    activeMember.getJoiningDate(),
-                    activeMember.getMarried(),
+                   // activeMember.getJoiningDate(),
                     true,
+                            activeMember.isMarried(),
                     activeMember.getPaymentOptions(),
                     activeMember.getPreferences(),
-                    activeMember.getFamily(),
-                    activeMember.getAuditData()));
+                    activeMember.getFamily()
+                   // activeMember.getAuditData()
+            )
+            );
 
             // audit data
-            inactiveMember.getAuditData().setInactivatedBy("test");
-            inactiveMember.getAuditData().setInactivatedDate(LocalDateTime.now());
+           /* inactiveMember.getAuditData().setInactivatedBy("test");
+            inactiveMember.getAuditData().setInactivatedDate(LocalDateTime.now());*/
 
             memberRepository.save(inactiveMember);
             return true;

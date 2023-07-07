@@ -29,7 +29,7 @@ public class CommunityAdminControllerV2 {
             return ResponseEntity.ok("Community not inserted");
         }
     }
-    @PostMapping("/addmember")
+    @PostMapping("/addMember")
     public ResponseEntity<String> addMember(@RequestBody MemberAddToCommunityRequest memberAddToCommunityRequest) {
         // TODO add validation
         boolean saved = communityAdminService.saveMemberID(memberAddToCommunityRequest);

@@ -1,4 +1,6 @@
 package com.experimental.product.community.membershipservice.controller;
+
+import com.experimental.product.community.membershipservice.client.response.MemberResponseV2;
 import com.experimental.product.community.membershipservice.client.response.MemberResponse;
 import com.experimental.product.community.membershipservice.service.MemberSearchServiceV2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,18 +19,18 @@ public class MemberSearchControllerV2 {
     private MemberSearchServiceV2 memberSearchService;
 
     @GetMapping()
-    public ResponseEntity<List<MemberResponse>> getAll()
+    public ResponseEntity<List<MemberResponseV2>> getAll()
     {
         return ResponseEntity.ok(memberSearchService.getAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MemberResponse> getById(@PathVariable String id)
+    public ResponseEntity<MemberResponseV2> getById(@PathVariable String id)
     {
         return ResponseEntity.ok(memberSearchService.get(id));
     }
     @GetMapping("/email/{emailAddress}")
-    public ResponseEntity<MemberResponse> getByEmailAddress(@PathVariable String emailAddress)
+    public ResponseEntity<MemberResponseV2> getByEmailAddress(@PathVariable String emailAddress)
     {
         return ResponseEntity.ok(memberSearchService.getByEmailAddress(emailAddress));
     }

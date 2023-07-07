@@ -1,8 +1,7 @@
 package com.experimental.product.community.membershipservice.service;
 
-import com.experimental.product.community.membershipservice.client.response.MemberResponse;
-import com.experimental.product.community.membershipservice.entity.Member;
-import com.experimental.product.community.membershipservice.repository.MemberRepository;
+import com.experimental.product.community.membershipservice.client.response.MemberResponseV2;
+import com.experimental.product.community.membershipservice.entity.MemberV2;
 import com.experimental.product.community.membershipservice.repository.MemberRepositoryV2;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -22,9 +21,9 @@ public class MemberSearchServiceV2 {
     private final Log logger = LogFactory.getLog(MemberSearchService.class);
 
 
-    public List<MemberResponse> getAll() {
+    public List<MemberResponseV2> getAll() {
         try {
-            List<Member> dbMembers = memberRepository.findAll();
+            List<MemberV2> dbMembers = memberRepository.findAll();
             return dbMembers.stream()
                     .map(member -> member.toMemberResponse())
                     .collect(Collectors.toList());
@@ -34,27 +33,27 @@ public class MemberSearchServiceV2 {
         }
     }
 
-    public MemberResponse get(String id) {
+    public MemberResponseV2 get(String id) {
         try {
-            Member dbMember = memberRepository.findById(id);
+            MemberV2 dbMember = memberRepository.findById(id).get();
             return dbMember.toMemberResponse();
         } catch (Exception e) {
             return null;
         }
     }
 
-    public MemberResponse getByContactNumber(String contactNumber) {
+    public MemberResponseV2 getByContactNumber(String contactNumber) {
         try {
-            Member dbMember = memberRepository.findOneByContactNumber(contactNumber);
+            MemberV2 dbMember = memberRepository.findOneByContactNumber(contactNumber);
             return dbMember.toMemberResponse();
         } catch (Exception e) {
             return null;
         }
     }
 
-    public MemberResponse getByEmailAddress(String emailAddress) {
+    public MemberResponseV2 getByEmailAddress(String emailAddress) {
         try {
-            Member dbMember = memberRepository.findOneByEmailAddress(emailAddress);
+            MemberV2 dbMember = memberRepository.findOneByEmailAddress(emailAddress);
             return dbMember.toMemberResponse();
         } catch (Exception e) {
             return null;

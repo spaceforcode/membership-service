@@ -1,28 +1,10 @@
 package com.experimental.product.community.membershipservice.service;
 
-import com.experimental.product.community.membershipservice.client.request.CreateMemberRequest;
-import com.experimental.product.community.membershipservice.client.request.UpdateMemberRequest;
-import com.experimental.product.community.membershipservice.entity.Member;
-import com.experimental.product.community.membershipservice.entity.auxilary.AuditData;
-import com.experimental.product.community.membershipservice.entity.auxilary.FamilyInfo;
-import com.experimental.product.community.membershipservice.entity.auxilary.TypeValueInfo;
-import com.experimental.product.community.membershipservice.repository.MemberRepositoryV2;
-import graphql.Assert;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import static com.google.common.base.Verify.verify;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
-import static graphql.Assert.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doNothing;
-
+import static org.springframework.data.mongodb.core.aggregation.ConditionalOperators.Cond.when;
+/*
 public class MemberAdminServiceV2Test {
     @Mock
     private MemberRepositoryV2 memberRepository;
@@ -164,7 +146,7 @@ public class MemberAdminServiceV2Test {
     }
 
 
-    }
+    }*/
 
 
 

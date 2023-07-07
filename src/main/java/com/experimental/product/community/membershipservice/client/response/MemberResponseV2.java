@@ -3,6 +3,8 @@ package com.experimental.product.community.membershipservice.client.response;
 import com.experimental.product.community.membershipservice.client.FamilyDetailV2;
 import com.experimental.product.community.membershipservice.client.PaymentOptionV2;
 import com.experimental.product.community.membershipservice.client.PreferenceDetailV2;
+import com.experimental.product.community.membershipservice.entity.auxilary.FamilyInfo2;
+import com.experimental.product.community.membershipservice.entity.auxilary.TypeValueInfo2;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -33,6 +35,11 @@ public class MemberResponseV2
     private List<PreferenceDetailV2> preferences;
     @JsonProperty("joining_date")
     private String joiningDate;
+
+    public MemberResponseV2() {
+
+    }
+
 
     public String getJoiningDate() {
         return joiningDate;
@@ -128,5 +135,19 @@ public class MemberResponseV2
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    public MemberResponseV2(String id, String contactNumber, String firstName, String lastName, String emailAddress, String unit, boolean married, List<PaymentOptionV2> paymentOptions, List<PreferenceDetailV2> preferences, String joiningDate, List<FamilyDetailV2> family) {
+        this.id = id;
+        this.contactNumber = contactNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.unit = unit;
+        this.married = married;
+        this.paymentOptions = paymentOptions;
+        this.preferences = preferences;
+        this.joiningDate = joiningDate;
+        this.family = family;
     }
 }

@@ -4,11 +4,8 @@ import com.experimental.product.community.membershipservice.client.ContactType;
 import com.experimental.product.community.membershipservice.client.request.CreateCommunityRequestV2;
 import com.experimental.product.community.membershipservice.client.request.MemberAddToCommunityRequest;
 import com.experimental.product.community.membershipservice.entity.CommunityV2;
-import com.experimental.product.community.membershipservice.entity.Member;
-import com.experimental.product.community.membershipservice.entity.auxilary.AuditData;
-import com.experimental.product.community.membershipservice.entity.auxilary.FamilyInfo;
-import com.experimental.product.community.membershipservice.entity.auxilary.MemberDetails;
-import com.experimental.product.community.membershipservice.entity.auxilary.TypeValueInfo;
+import com.experimental.product.community.membershipservice.entity.MemberV2;
+import com.experimental.product.community.membershipservice.entity.auxilary.*;
 import com.experimental.product.community.membershipservice.repository.CommunityRepositoryV2;
 import com.experimental.product.community.membershipservice.repository.MemberRepositoryV2;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,7 +24,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 
-/*public class CommunityAdminServiceV2Test {
+public class CommunityAdminServiceV2Test {
 
     @Mock
     private CommunityRepositoryV2 communityRepository;
@@ -91,30 +88,29 @@ import java.util.*;
         existingCommunity.setListofMembers(new ArrayList<>());
 
         //Member
-        LocalDateTime now = LocalDateTime.now(); // current date and time
+        //LocalDateTime now = LocalDateTime.now();
 
-        List<TypeValueInfo> typeValues = new ArrayList<>();
-        List<FamilyInfo> families = new ArrayList<>();
-        AuditData auditData = new AuditData("admin", now, "admin", now, "admin2", now);
-        // create an existing member object
-        Member existingMember = new Member(
+        List<TypeValueInfo2> typeValues = new ArrayList<>();
+        List<TypeValueInfo2> paymentOptions = new ArrayList<>();
+        List<FamilyInfo2> families = new ArrayList<>();
+        //AuditData auditData = new AuditData("admin", now, "admin", now, "admin2", now);
+
+        // Create an existing member object
+        MemberV2 existingMember = new MemberV2(
                 "64730a28fe55c9114db23eb3",
                 "1234567890",
                 "John",
                 "Doe",
                 "johndoe@example.com",
                 "A101",
-                now,
                 true,
                 true,
+                paymentOptions,
                 typeValues,
-                typeValues,
-                families,
-                auditData);
-
-
+                families
+                );
         when(communityRepository.findById(communityId)).thenReturn(Optional.of(existingCommunity));
-        when(memberRepository.findById(memberId)).thenReturn(existingMember);
+        when(memberRepository.findById(memberId)).thenReturn(Optional.of(existingMember));
 
         // Act
         boolean result = communityAdminService.saveMemberID(request);
@@ -195,6 +191,6 @@ import java.util.*;
         verify(communityRepository, never()).save(any());
     }
 
-}*/
+}
 
 

@@ -39,7 +39,7 @@ public class CommunityAdminControllerV2 {
             return ResponseEntity.ok("Member not added");
         }
     }
-    @PostMapping("/deletemember")
+    @PostMapping("/deleteMember")
     public ResponseEntity<String> deleteMemberFromCommunity(@RequestBody DeleteMemberFromCommunityRequest deleteMemberFromCommunity){
         boolean deleteFlag=communityAdminService.deleteMemmber(deleteMemberFromCommunity);
         if (deleteFlag) {

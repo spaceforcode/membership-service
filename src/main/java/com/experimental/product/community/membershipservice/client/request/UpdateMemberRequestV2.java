@@ -85,4 +85,14 @@ public class UpdateMemberRequestV2
     public void setPreferences(List<PreferenceDetailV2> preferences) {
         this.preferences = preferences;
     }
+
+    public UpdateMemberRequestV2(String memberId, String emailAddress, String unit, Boolean married, List<PaymentOptionV2> paymentOptions, List<FamilyDetailV2> familyDetails, List<PreferenceDetailV2> preferences) {
+        this.memberId = memberId;
+        this.emailAddress = emailAddress;
+        Unit = unit;
+        this.married = married;
+        this.paymentOptions = paymentOptions;
+        this.familyDetails = familyDetails;
+        this.preferences = preferences;
+    }
 }

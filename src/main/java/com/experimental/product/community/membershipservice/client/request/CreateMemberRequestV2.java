@@ -68,5 +68,16 @@ public class CreateMemberRequestV2
         this.married = married;
     }
 
+    public CreateMemberRequestV2(String contactNumber, String firstname, String lastname, String emailAddress, String unit, Boolean married) {
+        this.contactNumber = contactNumber;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.emailAddress = emailAddress;
+        this.unit = unit;
+        this.married = married;
+    }
+    public CreateMemberRequestV2()
+    {
 
+    }
 }

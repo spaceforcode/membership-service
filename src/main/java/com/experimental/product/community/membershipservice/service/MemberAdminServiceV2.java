@@ -191,6 +191,36 @@ public class MemberAdminServiceV2 {
         }
     }
 
+    public boolean active(String id) {
+        try {
+            LocalDateTime now = LocalDateTime.now();
+            Member activeMember = memberRepository.findById(id);
+            // set active=false during copy
+            Member inactiveMember=(new Member(activeMember.getId(),
+                    activeMember.getContactNumber(),
+                    activeMember.getFirstName(),
+                    activeMember.getLastName(),
+                    activeMember.getEmailAddress(),
+                    activeMember.getUnit(),
+                    activeMember.getJoiningDate(),
+                    activeMember.getMarried(),
+                    true,
+                    activeMember.getPaymentOptions(),
+                    activeMember.getPreferences(),
+                    activeMember.getFamily(),
+                    activeMember.getAuditData()));
+
+            // audit data
+            inactiveMember.getAuditData().setInactivatedBy("test");
+            inactiveMember.getAuditData().setInactivatedDate(LocalDateTime.now());
+
+            memberRepository.save(inactiveMember);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 
 
 

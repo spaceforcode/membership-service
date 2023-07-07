@@ -1,8 +1,5 @@
 package com.experimental.product.community.membershipservice.controller;
-
-
 import com.experimental.product.community.membershipservice.client.response.MemberResponse;
-import com.experimental.product.community.membershipservice.service.MemberSearchService;
 import com.experimental.product.community.membershipservice.service.MemberSearchServiceV2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

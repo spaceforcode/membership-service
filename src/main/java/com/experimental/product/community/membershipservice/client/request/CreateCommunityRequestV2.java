@@ -32,6 +32,17 @@ public class CreateCommunityRequestV2 {
     @JsonProperty("has_pool")
     private Boolean hasPool;
 
+    public CreateCommunityRequestV2(String name, String description, String address, Map<ContactType, String> contacts, List<String> emergencyContacts, Boolean isGated, Boolean hasPool, Boolean hasGym) {
+        this.name = name;
+        this.description = description;
+        this.address = address;
+        this.contacts = contacts;
+        this.emergencyContacts = emergencyContacts;
+        this.isGated = isGated;
+        this.hasPool = hasPool;
+        this.hasGym = hasGym;
+    }
+
     @JsonProperty("has_gym")
     private Boolean hasGym;
 

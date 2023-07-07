@@ -1,6 +1,7 @@
 package com.experimental.product.community.membershipservice.service;
 
 import com.experimental.product.community.membershipservice.client.request.CreateCommunityRequestV2;
+import com.experimental.product.community.membershipservice.client.request.DeleteMemberFromCommunityRequest;
 import com.experimental.product.community.membershipservice.client.request.MemberAddToCommunityRequest;
 import com.experimental.product.community.membershipservice.entity.CommunityV2;
 import com.experimental.product.community.membershipservice.entity.Member;
@@ -49,7 +50,6 @@ public class CommunityAdminServiceV2 {
                 MemberDetails memberDetails = new MemberDetails(
                         existingMember.getFirstName(),
                         existingMember.getLastName(),
-                        memberAddToCommunityRequest.getCommunityId(),
                         memberAddToCommunityRequest.getMemberId()
                 );
 
@@ -65,6 +65,34 @@ public class CommunityAdminServiceV2 {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public boolean deleteMemmber(DeleteMemberFromCommunityRequest deleteMemberFromCommunityRequest) {
+        try {
+            Optional<CommunityV2> existingCommunity = communityRepository.findById(deleteMemberFromCommunityRequest.getCommunityId());
+            Member existingMember = memberRepository.findById(deleteMemberFromCommunityRequest.getMemberId());
+
+            List<MemberDetails> updatedMembersList = null;
+            if (existingCommunity.isPresent() && existingMember != null) {
+                updatedMembersList = existingCommunity.get().getListofMembers();
+            }
+            if (updatedMembersList != null) {
+                // Find and remove the member from the updated members list
+                updatedMembersList.removeIf(member -> member.getMemberID().equals(deleteMemberFromCommunityRequest.getMemberId()));
+
+                // Update the community's member list
+                existingCommunity.get().setListofMembers(updatedMembersList);
+
+                // Save the updated community
+                communityRepository.save(existingCommunity.get());
+
+                return true;
+
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        return false;
     }
 
 }

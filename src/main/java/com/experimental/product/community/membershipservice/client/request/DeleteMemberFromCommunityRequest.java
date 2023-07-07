@@ -1,12 +1,9 @@
 package com.experimental.product.community.membershipservice.client.request;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class MemberAddToCommunityRequest {
+public class DeleteMemberFromCommunityRequest {
+
     @JsonProperty("community_id")
     private String communityId;
 
@@ -26,11 +23,6 @@ public class MemberAddToCommunityRequest {
     }
 
     public void setMemberId(String memberId) {
-        this.memberId = memberId;
-    }
-
-    public MemberAddToCommunityRequest(String communityId, String memberId) {
-        this.communityId = communityId;
         this.memberId = memberId;
     }
 }

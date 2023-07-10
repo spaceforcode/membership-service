@@ -1,11 +1,12 @@
 package com.experimental.product.community.membershipservice.controller;
 
 import com.experimental.product.community.membershipservice.client.request.CreateMemberRequest;
+import com.experimental.product.community.membershipservice.client.request.CreateMemberRequestV2;
 import com.experimental.product.community.membershipservice.client.request.UpdateMemberRequest;
+import com.experimental.product.community.membershipservice.client.request.UpdateMemberRequestV2;
 import com.experimental.product.community.membershipservice.entity.Member;
-import com.experimental.product.community.membershipservice.entity.auxilary.AuditData;
-import com.experimental.product.community.membershipservice.entity.auxilary.FamilyInfo;
-import com.experimental.product.community.membershipservice.entity.auxilary.TypeValueInfo;
+import com.experimental.product.community.membershipservice.entity.MemberV2;
+import com.experimental.product.community.membershipservice.entity.auxilary.*;
 import com.experimental.product.community.membershipservice.service.MemberAdminServiceV2;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-/*public class MemberAdminControllerV2Test {
+public class MemberAdminControllerV2Test {
     @Mock
     private MemberAdminServiceV2 memberAdminService;
 
@@ -37,8 +38,8 @@ import static org.mockito.Mockito.when;
     @Test
     void join_ValidRequest_ReturnsOkResponse() {
 
-        CreateMemberRequest createMemberRequest;
-        createMemberRequest = new CreateMemberRequest(
+        CreateMemberRequestV2 createMemberRequest;
+        createMemberRequest = new CreateMemberRequestV2(
                 "1234567890",
                 "John",
                 "Doe",
@@ -46,6 +47,8 @@ import static org.mockito.Mockito.when;
                 "A101",
                 true);
 
+        MemberV2 savingMember = new MemberV2();
+        savingMember.toMemberV2(createMemberRequest);
         when(memberAdminService.save(createMemberRequest)).thenReturn(true);
 
         // Act
@@ -56,8 +59,8 @@ import static org.mockito.Mockito.when;
     }
     @Test
     void join_InvalidRequest_ReturnsOkResponse() {
-        CreateMemberRequest createMemberRequest;
-        createMemberRequest = new CreateMemberRequest(
+        CreateMemberRequestV2 createMemberRequest;
+        createMemberRequest = new CreateMemberRequestV2(
                 "1234567890",
                 "John",
                 "Doe",
@@ -75,29 +78,28 @@ import static org.mockito.Mockito.when;
     }
     @Test
     void update_ValidRequest_ReturnsOkResponse() {
-        LocalDateTime now = LocalDateTime.now(); // current date and time
+     //LocalDateTime now = LocalDateTime.now(); // current date and time
 
-        List<TypeValueInfo> typeValues = new ArrayList<>();
-        List<FamilyInfo> families = new ArrayList<>();
-        AuditData auditData = new AuditData("admin", now, "admin", now, "admin2", now);
+        List<TypeValueInfo2> typeValues = new ArrayList<>();
+        List<FamilyInfo2> families = new ArrayList<>();
+        //AuditData auditData = new AuditData("admin", now, "admin", now, "admin2", now);
         // create an existing member object
-        Member existingMember = new Member(
+        MemberV2 existingMember = new MemberV2(
                 "1",
                 "1234567890",
                 "John",
                 "Doe",
                 "johndoe@example.com",
                 "A101",
-                now,
                 true,
                 true,
                 typeValues,
                 typeValues,
-                families,
-                auditData);
+                families
+                );
 
         // create an update member request object
-        UpdateMemberRequest updateMemberRequest = new UpdateMemberRequest(
+        UpdateMemberRequestV2 updateMemberRequest = new UpdateMemberRequestV2(
                 "1",
                 "johndoe@example.com",
                 "A101",
@@ -116,29 +118,27 @@ import static org.mockito.Mockito.when;
     }
     @Test
     void update_InvalidRequest_ReturnsOkResponse() {
-        LocalDateTime now = LocalDateTime.now(); // current date and time
+        //LocalDateTime now = LocalDateTime.now(); // current date and time
 
-        List<TypeValueInfo> typeValues = new ArrayList<>();
-        List<FamilyInfo> families = new ArrayList<>();
-        AuditData auditData = new AuditData("admin", now, "admin", now, "admin2", now);
+        List<TypeValueInfo2> typeValues = new ArrayList<>();
+        List<FamilyInfo2> families = new ArrayList<>();
+        //AuditData auditData = new AuditData("admin", now, "admin", now, "admin2", now);
         // create an existing member object
-        Member existingMember = new Member(
+        MemberV2 existingMember = new MemberV2(
                 "1",
                 "1234567890",
                 "John",
                 "Doe",
                 "johndoe@example.com",
                 "A101",
-                now,
                 true,
                 true,
                 typeValues,
                 typeValues,
-                families,
-                auditData);
-
+                families
+        );
         // create an update member request object
-        UpdateMemberRequest updateMemberRequest = new UpdateMemberRequest(
+        UpdateMemberRequestV2 updateMemberRequest = new UpdateMemberRequestV2(
                 "1",
                 "johndoe@example.com",
                 "A101",
@@ -161,26 +161,25 @@ import static org.mockito.Mockito.when;
     void unsubscribe_ValidId_ReturnsOkResponse() {
         // Arrange
         String memberId = "64730a28fe55c9114db23eb3";
-        LocalDateTime now = LocalDateTime.now(); // current date and time
+        //LocalDateTime now = LocalDateTime.now(); // current date and time
 
-        List<TypeValueInfo> typeValues = new ArrayList<>();
-        List<FamilyInfo> families = new ArrayList<>();
-        AuditData auditData = new AuditData("admin", now, "admin", now, "admin2", now);
+        List<TypeValueInfo2> typeValues = new ArrayList<>();
+        List<FamilyInfo2> families = new ArrayList<>();
+        //AuditData auditData = new AuditData("admin", now, "admin", now, "admin2", now);
         // create an existing member object
-        Member existingMember = new Member(
+        MemberV2 existingMember = new MemberV2(
                 "64730a28fe55c9114db23eb3",
                 "1234567890",
                 "John",
                 "Doe",
                 "johndoe@example.com",
                 "A101",
-                now,
                 true,
                 true,
                 typeValues,
                 typeValues,
-                families,
-                auditData);
+                families
+                );
 
         when(memberAdminService.delete(memberId)).thenReturn(true);
 
@@ -196,26 +195,25 @@ import static org.mockito.Mockito.when;
         // Arrange
         String memberId = "64730a28fe55c9114db23eb3";
 
-        LocalDateTime now = LocalDateTime.now(); // current date and time
+        //LocalDateTime now = LocalDateTime.now(); // current date and time
 
-        List<TypeValueInfo> typeValues = new ArrayList<>();
-        List<FamilyInfo> families = new ArrayList<>();
-        AuditData auditData = new AuditData("admin", now, "admin", now, "admin2", now);
+        List<TypeValueInfo2> typeValues = new ArrayList<>();
+        List<FamilyInfo2> families = new ArrayList<>();
+        //AuditData auditData = new AuditData("admin", now, "admin", now, "admin2", now);
         // create an existing member object
-        Member existingMember = new Member(
+        MemberV2 existingMember = new MemberV2(
                 "64730a28fe55c9114db23eb3",
                 "1234567890",
                 "John",
                 "Doe",
                 "johndoe@example.com",
                 "A101",
-                now,
                 true,
                 true,
                 typeValues,
                 typeValues,
-                families,
-                auditData);
+                families
+                );
 
         when(memberAdminService.delete(memberId)).thenReturn(false);
 
@@ -231,26 +229,25 @@ import static org.mockito.Mockito.when;
     void inactive_ValidId_ReturnsOkResponse() {
         // Arrange
         String memberId = "64730a28fe55c9114db23eb3";
-        LocalDateTime now = LocalDateTime.now(); // current date and time
+        //LocalDateTime now = LocalDateTime.now(); // current date and time
 
-        List<TypeValueInfo> typeValues = new ArrayList<>();
-        List<FamilyInfo> families = new ArrayList<>();
-        AuditData auditData = new AuditData("admin", now, "admin", now, "admin2", now);
+        List<TypeValueInfo2> typeValues = new ArrayList<>();
+        List<FamilyInfo2> families = new ArrayList<>();
+        //AuditData auditData = new AuditData("admin", now, "admin", now, "admin2", now);
         // create an existing member object
-        Member existingMember = new Member(
+        MemberV2 existingMember = new MemberV2(
                 "64730a28fe55c9114db23eb3",
                 "1234567890",
                 "John",
                 "Doe",
                 "johndoe@example.com",
                 "A101",
-                now,
                 true,
                 true,
                 typeValues,
                 typeValues,
-                families,
-                auditData);
+                families
+               );
 
         when(memberAdminService.inactive(memberId)).thenReturn(true);
 
@@ -264,26 +261,25 @@ import static org.mockito.Mockito.when;
     void inactive_InvalidId_ReturnsOkResponse() {
         // Arrange
         String memberId = "64730a28fe55c9114db23eb3";
-        LocalDateTime now = LocalDateTime.now(); // current date and time
+        //LocalDateTime now = LocalDateTime.now(); // current date and time
 
-        List<TypeValueInfo> typeValues = new ArrayList<>();
-        List<FamilyInfo> families = new ArrayList<>();
-        AuditData auditData = new AuditData("admin", now, "admin", now, "admin2", now);
+        List<TypeValueInfo2> typeValues = new ArrayList<>();
+        List<FamilyInfo2> families = new ArrayList<>();
+        //AuditData auditData = new AuditData("admin", now, "admin", now, "admin2", now);
         // create an existing member object
-        Member existingMember = new Member(
+        MemberV2 existingMember = new MemberV2(
                 "64730a28fe55c9114db23eb3",
                 "1234567890",
                 "John",
                 "Doe",
                 "johndoe@example.com",
                 "A101",
-                now,
                 true,
                 true,
                 typeValues,
                 typeValues,
-                families,
-                auditData);
+                families
+                );
 
         when(memberAdminService.inactive(memberId)).thenReturn(false);
 
@@ -298,26 +294,25 @@ import static org.mockito.Mockito.when;
     void active_ValidId_ReturnsOkResponse() {
         // Arrange
         String memberId = "64730a28fe55c9114db23eb3";
-        LocalDateTime now = LocalDateTime.now(); // current date and time
+        //LocalDateTime now = LocalDateTime.now(); // current date and time
 
-        List<TypeValueInfo> typeValues = new ArrayList<>();
-        List<FamilyInfo> families = new ArrayList<>();
-        AuditData auditData = new AuditData("admin", now, "admin", now, "admin2", now);
+        List<TypeValueInfo2> typeValues = new ArrayList<>();
+        List<FamilyInfo2> families = new ArrayList<>();
+        //AuditData auditData = new AuditData("admin", now, "admin", now, "admin2", now);
         // create an existing member object
-        Member existingMember = new Member(
+        MemberV2 existingMember = new MemberV2(
                 "64730a28fe55c9114db23eb3",
                 "1234567890",
                 "John",
                 "Doe",
                 "johndoe@example.com",
                 "A101",
-                now,
                 true,
                 false,
                 typeValues,
                 typeValues,
-                families,
-                auditData);
+                families
+                );
 
         when(memberAdminService.active(memberId)).thenReturn(true);
 
@@ -332,27 +327,25 @@ import static org.mockito.Mockito.when;
     void active_InValidId_ReturnsOkResponse() {
         // Arrange
         String memberId = "64730a28fe55c9114db23eb3";
-        LocalDateTime now = LocalDateTime.now(); // current date and time
+        //LocalDateTime now = LocalDateTime.now(); // current date and time
 
-        List<TypeValueInfo> typeValues = new ArrayList<>();
-        List<FamilyInfo> families = new ArrayList<>();
-        AuditData auditData = new AuditData("admin", now, "admin", now, "admin2", now);
+        List<TypeValueInfo2> typeValues = new ArrayList<>();
+        List<FamilyInfo2> families = new ArrayList<>();
+        //AuditData auditData = new AuditData("admin", now, "admin", now, "admin2", now);
         // create an existing member object
-        Member existingMember = new Member(
+        MemberV2 existingMember = new MemberV2(
                 "64730a28fe55c9114db23eb3",
                 "1234567890",
                 "John",
                 "Doe",
                 "johndoe@example.com",
                 "A101",
-                now,
                 true,
                 false,
                 typeValues,
                 typeValues,
-                families,
-                auditData);
-
+                families
+        );
         when(memberAdminService.active(memberId)).thenReturn(false);
 
         // Act
@@ -362,4 +355,3 @@ import static org.mockito.Mockito.when;
         assertEquals(ResponseEntity.ok("not activated"), response);
     }
 }
-*/

@@ -15,12 +15,18 @@ This README provides an overview and documentation for the Membership Service AP
 - Member Admin Controller
     - CREATE MEMBER
   
-    - UPDATE MEMBER 
+    - UPDATE MEMBER BY ID
     
     - DELETE MEMBER BY ID
     
     - INACTIVE MEMBER BY ID
-    
+
+- CommunityAdminControllerV2
+   - CREATE COMMUNITY
+  
+   - ADD MEMBER TO COMMUNITY 
+
+   - DELETE MEMBER FORM COMMUNITY
 
 - Usage
 - Dependencies
@@ -163,15 +169,15 @@ Retrieves a specific member by their email address.
   }
   ```
   - Response: 
-      - Success Response: *inserted.*
+      - Success Response: **inserted.**
       - Failure Response: **Not inserted**
      
-### UPDATE MEMBER 
+### ADD MEMBER TO COMMUNITY
   Create Member using memberRequest  
 
   - URL:`/v2/members`
   - Method: POST
-  -Request updateMemberRequest
+  - Request: updateMemberRequest
   
   ```
   {
@@ -201,8 +207,118 @@ Retrieves a specific member by their email address.
 
   ```
   - Response: 
-      - Success Response: *updated*
-      - Failure Response: **Not updated**      
+      - Success Response: **updated**
+      - Failure Response: **Not updated**
+
+### DELETE MEMBER BY ID
+Create Member using memberRequest
+
+- URL:`/v2/members`
+- Method: DELETE
+- Parameter MEMBER ID
+- Response:
+    - Success Response: **deleted**
+    - Failure Response: **No deleted**
+
+### DELETE MEMBER BY ID
+Inactive member using MEMBER ID
+- URL:`/v2/members`
+- Method: DELETE
+- Parameter MEMBER ID
+- Response:
+    - Success Response: **deleted**
+    - Failure Response: **No deleted**
+
+### INACTIVE MEMBER BY ID
+Inactive member using MEMBER ID
+- URL:`/v2/members`
+- Method: DELETE
+- Parameter `id`:Member ID
+- Response:
+    - Success Response: **inactivated**
+    - Failure Response: **not inactivated**
+
+## Community Admin Controller  
+
+### CREATE COMMUNITY
+Create Community using CreateCommunityrequest
+
+- URL:`v2/communities`
+- Method: POST
+- Request: CreateCommunityrequest
+
+  ```
+  {
+    "name": "LRSB Community",
+    "description": "New Liluah",
+    "address": "Ramlal Ghosh lane",
+    "contact_info": {
+        "number": "9073199864",
+        "email": "LRSB@example.com"
+    },
+    "amenities": [
+        {
+            "name": "amen 1",
+            "description": "desc",
+            "featured_photos": [
+                "link1",
+                "link2"
+            ]
+        },
+        {
+            "name": "amen 2",
+            "description": "desc",
+            "featured_photos": [
+                "link1",
+                "link2"
+            ]
+        }
+    ],
+    "emergency_contacts": [
+        "contact 1",
+        "contact 2"
+    ],
+    "gated": true,
+    "has_pool": false,
+    "has_gym": true,
+    "active": true
+   }
+  ```
+- Response:
+    - Success Response: **Community saved successfully.**
+    - Failure Response: **Community not inserted**
+### ADD MEMBER TO COMMUNITY
+Create Community using MemberAddToCommunityRequest
+
+- URL:`v2/communities`
+- Method: POST
+- Request: MemberAddToCommunityRequest
+
+  ```
+  {
+    "community_id": "community_id",
+    "member_id": "member_id"
+  } 
+  ```
+- Response:
+    - Success Response: **Member added to this community successfully.**
+    - Failure Response: **Member not added**
+### DELETE MEMBER FORM COMMUNITY
+Delete Member from Community using DeleteMemberFromCommunityRequest
+
+- URL:`v2/communities`
+- Method: POST
+- Request: DeleteMemberFromCommunityRequest
+
+  ```
+  {
+    "community_id": "community_id",
+    "member_id": "member_id"
+  } 
+  ```
+- Response:
+    - Success Response: **Member successfully removed from this community.**
+    - Failure Response: **Failed to remove**
 
 
 

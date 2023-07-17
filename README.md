@@ -1,3 +1,5 @@
+Membership-Service
+
 # membership-service
 Microservice based APIs to leverage different services towards community
 # API Documentation
@@ -6,41 +8,33 @@ This README provides an overview and documentation for the Membership Service AP
 ## Table of Contents
     Endpoints
 
- -  Member Search Controller
+-  Member Search API
     - GET ALL MEMBER
-  
+
     - GET MEMBER BY ID
-  
+
     - GET EMAIL MEMBER BY ADDRESS
-- Member Admin Controller
+- Member Admin API
     - CREATE MEMBER
-  
+
     - UPDATE MEMBER BY ID
-    
+
     - DELETE MEMBER BY ID
-    
+
     - INACTIVE MEMBER BY ID
-
-- CommunityAdminControllerV2
-   - CREATE COMMUNITY
-  
-   - ADD MEMBER TO COMMUNITY 
-
-   - DELETE MEMBER FORM COMMUNITY
-
 - Usage
 - Dependencies
 
-# Endpoints 
-  ## Member Search Controller
-  
-### Get All Members
-  Retrieves a list of all members.
+# Endpoints
+## Member Search API
 
-  - URL:`/v2/members`
-  - Method: GET
-  - Response: `List<MemberResponseV2>`  - List of member details
-  
+### Get All Members
+Retrieves a list of all members.
+
+- URL:`/v2/members`
+- Method: GET
+- Response: List of member details
+
 ```
 [
   {
@@ -91,15 +85,15 @@ This README provides an overview and documentation for the Membership Service AP
   }
 ]  
 ```
- 
+
 ### Get Member by ID
 Retrieves a specific member by their ID.
 
 - URL:`/v2/members/{id}`
 - Method: GET
 - Parameter
-   - `id`:Member ID
-- Response: `MemberResponseV2`  - Details of the member with the specified ID
+    - `id`:Member ID
+- Response:Details of the member with the specified ID
 
 ```
 {
@@ -126,14 +120,14 @@ Retrieves a specific member by their ID.
   "family": []
 }
 ```
- 
+
 ### Get Member by Email Address
 Retrieves a specific member by their email address.
 - URL:`/v2/members/email/{emailAddress}`
 - Method: GET
 - Parameter
     - `emailAddress`:Member's email address
-- Response: `MemberResponseV2`  - Details of the member with the specified email address
+- Response:Details of the member with the specified email address
 
 ```
 {
@@ -150,14 +144,14 @@ Retrieves a specific member by their email address.
   "family": []
 }
 ```
-## Member Admin Controller
+## Member Admin API
 ### CREATE MEMBER
-  Create Member using memberRequest  
+Create Member using memberRequest
 
-  - URL:`/v2/members`
-  - Method: POST
+- URL:`/v2/members`
+- Method: POST
   -Request
-  
+
   ```
   {
   "contact_number": "9073199864",
@@ -168,17 +162,17 @@ Retrieves a specific member by their email address.
   "unit": "A01"
   }
   ```
-  - Response: 
-      - Success Response: **inserted.**
-      - Failure Response: **Not inserted**
-     
-### ADD MEMBER TO COMMUNITY
-  Create Member using memberRequest  
+- Response:
+    - Success Response: **inserted.**
+    - Failure Response: **Not inserted**
 
-  - URL:`/v2/members`
-  - Method: POST
-  - Request: updateMemberRequest
-  
+### ADD MEMBER TO COMMUNITY
+Create Member using memberRequest
+
+- URL:`/v2/members`
+- Method: POST
+- Request: updateMemberRequest
+
   ```
   {
   "email_address": "string",
@@ -206,9 +200,9 @@ Retrieves a specific member by their email address.
 }
 
   ```
-  - Response: 
-      - Success Response: **updated**
-      - Failure Response: **Not updated**
+- Response:
+    - Success Response: **updated**
+    - Failure Response: **Not updated**
 
 ### DELETE MEMBER BY ID
 Create Member using memberRequest
@@ -238,93 +232,10 @@ Inactive member using MEMBER ID
     - Success Response: **inactivated**
     - Failure Response: **not inactivated**
 
-## Community Admin Controller  
-
-### CREATE COMMUNITY
-Create Community using CreateCommunityrequest
-
-- URL:`v2/communities`
-- Method: POST
-- Request: CreateCommunityrequest
-
-  ```
-  {
-    "name": "LRSB Community",
-    "description": "New Liluah",
-    "address": "Ramlal Ghosh lane",
-    "contact_info": {
-        "number": "9073199864",
-        "email": "LRSB@example.com"
-    },
-    "amenities": [
-        {
-            "name": "amen 1",
-            "description": "desc",
-            "featured_photos": [
-                "link1",
-                "link2"
-            ]
-        },
-        {
-            "name": "amen 2",
-            "description": "desc",
-            "featured_photos": [
-                "link1",
-                "link2"
-            ]
-        }
-    ],
-    "emergency_contacts": [
-        "contact 1",
-        "contact 2"
-    ],
-    "gated": true,
-    "has_pool": false,
-    "has_gym": true,
-    "active": true
-   }
-  ```
-- Response:
-    - Success Response: **Community saved successfully.**
-    - Failure Response: **Community not inserted**
-### ADD MEMBER TO COMMUNITY
-Create Community using MemberAddToCommunityRequest
-
-- URL:`v2/communities`
-- Method: POST
-- Request: MemberAddToCommunityRequest
-
-  ```
-  {
-    "community_id": "community_id",
-    "member_id": "member_id"
-  } 
-  ```
-- Response:
-    - Success Response: **Member added to this community successfully.**
-    - Failure Response: **Member not added**
-### DELETE MEMBER FORM COMMUNITY
-Delete Member from Community using DeleteMemberFromCommunityRequest
-
-- URL:`v2/communities`
-- Method: POST
-- Request: DeleteMemberFromCommunityRequest
-
-  ```
-  {
-    "community_id": "community_id",
-    "member_id": "member_id"
-  } 
-  ```
-- Response:
-    - Success Response: **Member successfully removed from this community.**
-    - Failure Response: **Failed to remove**
-
-
 
 ### Dependencies
 This API relies on the following dependencies:
- - Spring Framework
+- Spring Framework
     
 
   

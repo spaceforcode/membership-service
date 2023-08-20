@@ -197,7 +197,7 @@ Create Member using memberRequest
     }
   ],
   "unit": "string"
-}
+
 
   ```
 - Response:

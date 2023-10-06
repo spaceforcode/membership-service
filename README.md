@@ -197,6 +197,7 @@ Create Member using memberRequest
     }
   ],
   "unit": "string"
+  ]
   }
 
   ```
@@ -214,6 +215,7 @@ Create Member using memberRequest
     - Success Response: **deleted**
     - Failure Response: **Not deleted**
 
+
 ### DELETE MEMBER BY ID
 Inactive member using MEMBER ID
 - URL:`/v2/members`
@@ -223,6 +225,7 @@ Inactive member using MEMBER ID
     - Success Response: **deleted**
     - Failure Response: **Not deleted**
 
+
 ### INACTIVE MEMBER BY ID
 Inactive member using MEMBER ID
 - URL:`/v2/members`
@@ -231,6 +234,7 @@ Inactive member using MEMBER ID
 - Response:
     - Success Response: **inactivated**
     - Failure Response: **Not inactivated**
+
 
 
 ### Dependencies

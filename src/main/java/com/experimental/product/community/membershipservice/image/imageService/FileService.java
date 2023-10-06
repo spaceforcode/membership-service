@@ -7,6 +7,7 @@ import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.experimental.product.community.membershipservice.entity.MemberV2;
 import com.experimental.product.community.membershipservice.image.ImageProperties;
+import com.experimental.product.community.membershipservice.image.imageConfig.StorageConfig;
 import com.experimental.product.community.membershipservice.repository.MemberRepositoryV2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,21 +30,34 @@ public class FileService
     private String region;
 
     @Autowired
+    StorageConfig storageConfig;
+    @Autowired
     private AmazonS3 s3client;
     @Autowired
     private MemberRepositoryV2 memberRepositoryV2;
-    public String uploadFile(MultipartFile file, String id) throws IOException {
-        File convertedFile = convertMultipartFile(file);
-        PutObjectResult putObjectResult= s3client.putObject(new PutObjectRequest(bucketName,file.getOriginalFilename(),convertedFile));
+   /* private String regionS3=storageConfig.region;
+    private String bucketS3=storageConfig.bucketName;*/
+    public String uploadFile(MultipartFile file, String id) {
+        File convertedFile = null;
+        String key;
+        try {
+            convertedFile = convertMultipartFile(file);
+            PutObjectResult putObjectResult = s3client.putObject(new PutObjectRequest(bucketName, file.getOriginalFilename(), convertedFile));
 
-        String key = file.getOriginalFilename();
-        String objectUrl = String.format("https://%s.s3.%s.amazonaws.com/%s",
-                bucketName, region ,file.getOriginalFilename());
-        MemberV2 memberV2= memberRepositoryV2.findById(id).get();
-        ImageProperties imageProperties =new ImageProperties(objectUrl,key);
-        memberV2.addImage(imageProperties);
-        memberRepositoryV2.save(memberV2);
-        convertedFile.delete();
+            key = file.getOriginalFilename();
+            String objectUrl = String.format("https://%s.s3.%s.amazonaws.com/%s",
+                    bucketName, region, file.getOriginalFilename());
+            MemberV2 memberV2 = memberRepositoryV2.findById(id).get();
+            ImageProperties imageProperties = new ImageProperties(objectUrl, key);
+            memberV2.addImage(imageProperties);
+            memberRepositoryV2.save(memberV2);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        finally
+        {
+            convertedFile.delete();
+        }
         return key;
     }
     public byte[] downloadFile(String key)

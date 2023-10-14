@@ -5,6 +5,7 @@ import com.experimental.product.community.membershipservice.client.request.Creat
 import com.experimental.product.community.membershipservice.client.response.MemberResponseV2;
 import com.experimental.product.community.membershipservice.entity.auxilary.FamilyInfo2;
 import com.experimental.product.community.membershipservice.entity.auxilary.TypeValueInfo2;
+import com.experimental.product.community.membershipservice.image.ImageProperties;
 import nonapi.io.github.classgraph.json.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -40,6 +41,8 @@ public class MemberV2
     private List<FamilyInfo2> family=new ArrayList<>();
     @Field("joining_date")
     private LocalDateTime joiningDate = LocalDateTime.now();
+
+    private List<ImageProperties> images =new ArrayList<>() ;
 
 
 
@@ -216,6 +219,18 @@ public class MemberV2
         this.preferences=preferences;
         this.family=family;
 
+    }
+
+    public List<ImageProperties> getImages() {
+        return images;
+    }
+
+    public void setImages(List<ImageProperties> images) {
+        this.images = images;
+    }
+    public void addImage (ImageProperties image)
+    {
+        images.add(image);
     }
 
 }

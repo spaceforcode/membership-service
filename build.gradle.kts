@@ -29,6 +29,16 @@ dependencies {
     implementation("com.graphql-java:graphiql-spring-boot-starter:5.0.2")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    //Amazon S3
+
+    implementation (platform("com.amazonaws:aws-java-sdk-bom:1.11.1000"))
+    implementation ("com.amazonaws:aws-java-sdk-s3")
+    implementation("javax.xml.bind:jaxb-api")
+    //awssdk
+    implementation(platform("software.amazon.awssdk:bom:2.20.56"))
+    implementation("software.amazon.awssdk:s3")
+
 }
 
 tasks.withType<KotlinCompile> {

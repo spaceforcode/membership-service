@@ -95,4 +95,8 @@ public class UpdateMemberRequestV2
         this.familyDetails = familyDetails;
         this.preferences = preferences;
     }
+    public UpdateMemberRequestV2()
+    {
+
+    }
 }

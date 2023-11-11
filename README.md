@@ -197,7 +197,8 @@ Create Member using memberRequest
     }
   ],
   "unit": "string"
-}
+  ]
+  }
 
   ```
 - Response:
@@ -212,7 +213,8 @@ Create Member using memberRequest
 - Parameter MEMBER ID
 - Response:
     - Success Response: **deleted**
-    - Failure Response: **No deleted**
+    - Failure Response: **Not deleted**
+
 
 ### DELETE MEMBER BY ID
 Inactive member using MEMBER ID
@@ -221,7 +223,8 @@ Inactive member using MEMBER ID
 - Parameter MEMBER ID
 - Response:
     - Success Response: **deleted**
-    - Failure Response: **No deleted**
+    - Failure Response: **Not deleted**
+
 
 ### INACTIVE MEMBER BY ID
 Inactive member using MEMBER ID
@@ -230,16 +233,10 @@ Inactive member using MEMBER ID
 - Parameter `id`:Member ID
 - Response:
     - Success Response: **inactivated**
-    - Failure Response: **not inactivated**
+    - Failure Response: **Not inactivated**
+
 
 
 ### Dependencies
 This API relies on the following dependencies:
 - Spring Framework
-    
-
-  
- 
-    
-  
-  
